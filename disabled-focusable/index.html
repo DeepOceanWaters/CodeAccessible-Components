@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+</head>
+
+<body>
+    <div class="demo-zone">
+        <section aria-labelledby="tooltip-desc-heading">
+            <h2 id="tooltip-desc-heading">Tooltip: accessible description</h2>
+            <p>
+                TBD
+            </p>
+            
+            <div class="settings">
+                <h4>settings</h4>
+                <label for="simulate-error">
+                    <input type="checkbox" id="simulate-error">
+                    <span>Simulate errors</span>
+                </label>
+            </div>
+
+            <div>
+                <h3 id="demo">demo</h3>
+
+
+                <div class="actions-bar">
+                    <button class="hidden" data-revealed-name aria-labelledby="name-1" aria-describedby="tip-3"
+                        aria-disabled="true">
+                        <span id="name-1" class="fake-btn">Minify Marmots</span>
+                        <!-- We add ARIA-HIDDEN=TRUE -->
+                        <span id="tip-3" data-tooltip="group">
+                            <!-- ARIA-DESCRIBEDBY can target content that is ARIA-HIDDEN (or similar, such as display:none)
+                             and the content will still be part of the accessible description. However, if the target
+                             content contains an ARIA-HIDDEN (or similar) element, that element will not be included in
+                             accessible description. 
+                        -->
+                            <span id="disabled-tooltip-1" class="visually-hidden" data-tooltip="error">
+                                <span>Cannot minify marmots - select at least one marmot to minify.</span>
+                            </span>
+                            <span class="visually-hidden" data-tooltip="description" aria-hidden="true">
+                                <span>Minifies and smallifies all selected marmots, making them tiny.</span>
+                            </span>
+                        </span>
+                    </button>
+                    <button class="hidden" data-revealed-name aria-describedby="tip-2">
+                        <span class="fake-btn">Maxify Marmots</span>
+                        <span id="tip-2" aria-hidden="true" data-visual-name>
+                            Maxifies all selected marmots making them very large!
+                        </span>
+                    </button>
+                    <button class="hidden" data-revealed-name aria-describedby="tip-edit-marm">
+                        <span class="fake-btn">Edit</span>
+                        <span id="tip-edit-marm" aria-hidden="true" data-visual-name>
+                            Edit your selected marmot(s)' appearance!
+                        </span>
+                    </button>
+                </div>
+                <p>Text about marmots. Marmots are large ground squirrels.</p>
+                <a href="https://en.wikipedia.org/wiki/Marmot" target="_blank" class="hidden" data-revealed-name
+                    aria-describedby="tip-1">
+                    <span class="fake-btn link">
+                        Read more about marmots on Wikipedia!
+                    </span>
+                    <span id="tip-1" class="visually-hidden" aria-hidden="true" data-visual-name>
+                        Opens in a new tab
+                    </span>
+                </a>
+                <p>
+                    <span>
+                        Marmots are herbivores and active during the summer. They are typically found in groups. During
+                        the
+                        winter they hibernate.
+                    </span>
+                    <button class="hidden" data-revealed-name aria-labelledby="name-2" aria-describedby="tip-marm">
+                        <span id="name-2" class="fake-btn">More</span>
+                        <span id="tip-marm" data-tooltip="group">
+                            <span class="visually-hidden" data-tooltip="error">
+                                An error occurred and this content is not currently available.</span>
+                            <span class="visually-hidden" data-tooltip="description">Marmots</span>
+                        </span>
+                    </button>
+                    <button class="hidden" data-revealed-name aria-describedby="tip-marm-care">
+                        <span class="fake-btn">Taking care of marmots</span>
+                        <span id="tip-marm-care" class="visually-hidden" aria-hidden="true" data-visual-name>
+                            Read a whole lot on taking care of marmots, this is a really long accessible
+                            description/tooltip, we don't recommend using accessible descriptions and tooltips that are
+                            this
+                            long! Screen reader users may want to step through the text in this tooltip, which is not
+                            possible when it is only available as the accessible description. That's why we typically
+                            recommend using a toggletip!
+                        </span>
+                    </button>
+                </p>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>

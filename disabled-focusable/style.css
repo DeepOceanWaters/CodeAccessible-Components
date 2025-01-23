@@ -1,0 +1,293 @@
+:root {
+    --bs: 0px 2px 3px -1px #222;
+    --bs-hover: 0px 4px 7px -2px #222;
+    --bs-active: 0px 0px 3px -1px inset #222;
+    --disabled-color: #555;
+}
+
+/* end root variables */
+
+/* DISABLED-FOCUSABLE CSS */
+
+[data-revealed-name] {
+
+    [data-tooltip="group"] {
+        padding-left: 0;
+        padding-right: 0;
+
+        [data-tooltip] {
+            border-radius: 0;
+
+            &:not([data-tooltip="error"]) {
+                display: block;
+            }
+        }
+    }
+
+    [data-tooltip="error"] {
+        display: none;
+    }
+
+    &[aria-disabled="true"] {
+
+        .fake-btn {
+            color: var(--disabled-color);
+        }
+
+        [data-tooltip="error"] {
+            display: block;
+        }
+
+        [data-hide-on-error] {
+            display: none;
+        }
+    }
+}
+
+
+
+[data-tooltip="error"] {
+    background-color: rgb(138, 26, 26);
+    color: white;
+}
+
+
+/* END DISABLED-FOCUSABLE CSS*/
+
+/* BEGIN REUSE OF TOOLTIP CSS */
+/* visual styling */
+.demo-zone * {
+    box-sizing: border-box;
+}
+
+/* [data-revealed-name] is placed on the <button> or <a> element */
+
+/* This allows us to visually hide content, while
+ * ensuring that it remains available to AT. This can be
+ * useful for a couple of reasons:
+ * - allows us to give an accessible name to an interactive 
+ *   control when placed inside an interactive control. Most 
+ *   interactive components can obtain its accessible NAME from
+ *   their contents, such as buttons, links, and more.
+ * - automatic translation services typically do not translate
+ *   aria attributes such as ARIA-LABEL, but will translate 
+ *   visually hidden content.
+ */
+/* In addition to the above, in this pattern we use the .hidden
+ * class to determine when this .visually-hidden class should
+ * apply. 
+ */
+.demo-zone .visually-hidden:not([data-tooltip]),
+.hidden [data-tooltip]:not(:focus, :active, .visible) {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+/* We set position:relative as the revelead name
+ * uses position:absolute which orients based on the
+ * closest ancestor element with a set position property
+ */
+[data-revealed-name] {
+    position: relative;
+    border: 1px solid black;
+}
+
+/* visual styling */
+[data-revealed-name] {
+    border: none;
+    padding: 0.25rem 0;
+    background: transparent;
+    margin: 0 max(0.15rem, 2px);
+}
+
+/* Removing the outline property removes focus indicators.  
+ * In this case, we are doing this deliberately, because
+ * the button element will contain both the tooltip text
+ * and content that is styled to appear as the button.
+ * As such, we want the focus indicator to be on the visual
+ * button only.
+ */
+[data-revealed-name]:focus {
+    outline: none;
+}
+
+/* Outline provides a focus indicator on the always visible element 
+ * which visually represents the button element.
+ */
+[data-revealed-name]:is(:hover, :focus) .fake-btn {
+    outline: max(0.15rem, 2px) solid #333;
+    outline-offset: max(0.15rem, 2px);
+    background: #EEE;
+}
+
+/* visual styling*/
+[data-revealed-name] * {
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* visual styling */
+[data-revealed-name] .fake-btn {
+    /* The hex colors #EEEEEE and #222222 have a  
+     * color contrast ratio of 13.7:1 which is far
+     * above the 4.5:1 color contrast ratio minimum
+     * for text, and 3:1 for non-text content
+     */
+    background: #EEE;
+    color: #222;
+    border: 1px solid #666;
+    padding: calc(0.25rem) 0.4rem;
+    box-shadow: var(--bs);
+}
+
+/* visual styling */
+[data-revealed-name]:is(:hover, :focus) .fake-btn {
+    box-shadow: var(--bs-hover);
+}
+
+/* visual styling */
+[data-revealed-name]:hover .fake-btn {
+    background-color: white;
+}
+
+/* shows the tooltip */
+[data-revealed-name]:is(:focus, :hover) [data-tooltip="group"] {
+    position: absolute;
+    left: 0;
+    bottom: -0.5rem;
+    transform: translate(0, 100%);
+
+    background: #333;
+    color: white;
+
+    white-space: nowrap;
+
+    z-index: 1;
+}
+
+/* visual styling */
+/* tooltip arrow */
+[data-revealed-name]:not(.hidden):is(:focus, :hover)::before {
+    content: "";
+
+    position: absolute;
+    left: 50%;
+    bottom: -0.75rem;
+    transform: translate(-50%, 0%);
+
+    width: 0;
+    height: 0;
+
+    border-bottom: 0.5rem solid #333;
+    border-right: 0.5rem solid transparent;
+    border-left: 0.5rem solid transparent;
+    border-top: 0.5rem solid transparent;
+
+    /* ensures that this arrow is above the tooltip text */
+    z-index: 2;
+
+    cursor: pointer;
+}
+
+/* this helps cover the space between the button and the tooltip. 
+ * this helps prevent the button from losing hover, thus causing 
+ * the tooltip to disappear.
+ */
+[data-revealed-name]:not(.hidden):is(:hover)::after {
+    content: "";
+
+    position: absolute;
+    left: 50%;
+    bottom: -0.75rem;
+    transform: translate(-50%, 0%);
+
+    width: 100%;
+    height: 1rem;
+
+    cursor: pointer;
+
+    z-index: 1;
+}
+
+/* visual styling */
+[data-revealed-name]:active .fake-btn {
+    box-shadow: var(--bs-active);
+}
+
+/* visual styling */
+.demo-zone kbd {
+    padding: 0.25rem 0.35rem;
+    background-color: #EEE;
+    color: #222;
+    border: 1px solid #AAA;
+}
+
+/* visual styling */
+.actions-bar {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* visual styling */
+a[data-revealed-name] .fake-btn.link {
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+}
+
+/* visual styling */
+.demo-zone .attribute {
+    color: rgb(226, 168, 226);
+    background-color: #333;
+    padding: 0 0.2rem;
+    border-radius: 2px;
+}
+
+/* accounts for word-wrap: 
+ *  - the display ensures that the tooltip and arrow are placed correctly
+ *  - the line-height ensures that the outline doesn't overlap text
+ */
+a[data-revealed-name] {
+    display: inline-block;
+    line-height: 1.5rem;
+}
+
+a[data-revealed-name]:is(:focus, :hover) [data-tooltip],
+a[data-revealed-name]:not(.hidden):is(:focus, :hover)::before {
+    bottom: -0.25rem;
+}
+
+/* visual styling */
+a[data-revealed-name],
+a[data-revealed-name]:visited {
+    color: black;
+}
+
+/* visual stylings to account for the website theme */
+[data-revealed-name]:hover {
+    background-color: transparent;
+}
+
+a[data-revealed-name] {
+    text-decoration: none !important;
+}
+
+a[data-revealed-name] .fake-btn {
+    text-decoration: underline !important;
+}
+
+a[data-revealed-name] [data-tooltip] {
+    text-decoration: none !important;
+}
+
+[data-tooltip] {
+    line-height: normal !important;
+}
