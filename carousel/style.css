@@ -1,0 +1,72 @@
+:root {
+    --dot-size: max(0.25rem, 24px);
+}
+
+
+.carousel {
+    position: relative;
+}
+
+.carousel-zone {
+    position: relative;
+    width: calc(100% - 70%);
+    /* Adjust the width as needed */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    /* Center the carousel horizontally */
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    font-size: 1.2em;
+    cursor: pointer;
+    z-index: 1;
+    /* Ensure the buttons are above the images */
+}
+
+#prevSlide {
+    left: 30%;
+}
+
+#nextSlide {
+    right: 30%;
+}
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: calc(3 * max(0.05rem, 2px));
+    margin-top: 10px;
+
+    .dot {
+        width: var(--dot-size);
+        height: var(--dot-size);
+        background: transparent;
+        border: 0.15rem solid black;
+        border-radius: 50%;
+    
+        &[aria-pressed="true"] {
+            background: black;
+        }
+
+        &:focus {
+            outline: 0.15rem solid black;
+            outline-offset: max(0.05rem, 2px);
+        }
+    }
+}
+
+
