@@ -1,72 +1,89 @@
-:root {
-    --dot-size: max(0.25rem, 24px);
-}
+/* encapsulate our css to the demonstration */
+#carousel {
+    .carousel {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 
+    }
 
-.carousel {
-    position: relative;
-}
+    .carousel-zone {
+        grid-area: track;
+    }
 
-.carousel-zone {
-    position: relative;
-    width: calc(100% - 70%);
-    /* Adjust the width as needed */
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    margin: 0 auto;
-    /* Center the carousel horizontally */
-}
+    .row-1 {
+        display: grid;
+        grid-template-columns: 10vw 70vw 10vw;
+        grid-template-rows: auto;
+        grid-template-areas:
+            "prev track next";
+    }
 
-.carousel-track {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
+    .prev {
+        grid-area: prev;
+    }
 
-.carousel-slide {
-    min-width: 100%;
-    box-sizing: border-box;
-}
+    .next {
+        grid-area: next;
+    }
 
-.carousel-control {
-    position: absolute;
-    top: 50%;
-    font-size: 1.2em;
-    cursor: pointer;
-    z-index: 1;
-    /* Ensure the buttons are above the images */
-}
+    .next,
+    .prev {
+        justify-content: center;
+    }
 
-#prevSlide {
-    left: 30%;
-}
+    .carousel-track {
+        display: flex;
+        justify-content: center;
+    }
 
-#nextSlide {
-    right: 30%;
-}
+    .carousel-slide[aria-hidden="true"] {
+        display: none;
+    }
 
-.carousel-dots {
-    display: flex;
-    justify-content: center;
-    gap: calc(3 * max(0.05rem, 2px));
-    margin-top: 10px;
+    .carousel-control {
+        font-size: 1.2em;
+        cursor: pointer;
+        width: fit-content;
+        height: fit-content;
+        justify-self: center;
+        align-self: center;
+    }
 
-    .dot {
-        width: var(--dot-size);
-        height: var(--dot-size);
-        background: transparent;
-        border: 0.15rem solid black;
-        border-radius: 50%;
-    
-        &[aria-pressed="true"] {
-            background: black;
-        }
+    .carousel-dots {
+        display: flex;
+        justify-content: center;
+        gap: calc(3 * max(0.05rem, 2px));
+        margin-top: 10px;
 
-        &:focus {
-            outline: 0.15rem solid black;
-            outline-offset: max(0.05rem, 2px);
+        .dot {
+            width: max(0.25rem, 24px);
+            height: max(0.25rem, 24px);
+            background: transparent;
+            border: 0.15rem solid black;
+            border-radius: 50%;
+
+            &[aria-pressed="true"] {
+                background: black;
+            }
+
+            &:focus {
+                outline: 0.15rem solid black;
+                outline-offset: max(0.05rem, 2px);
+            }
         }
     }
+
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+    }
 }
-
-
