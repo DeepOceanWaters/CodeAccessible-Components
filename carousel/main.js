@@ -33,14 +33,15 @@ function activateDot(dot, dots, slides, liveRegion) {
 
 
 /**
- * 
+ * Add arrow key navigation
  * @param {HTMLElement[]} items 
+ * @param {('horizontal'|'vertical')[]} directions 
  */
-function addArrowKeyNavigation(items) {
+function addArrowKeyNavigation(items, directions = ['horizontal', 'vertical']) {
     for(let item of items) {
         item.addEventListener(
             'keydown', 
-            (e) => arrowNavigationKeyboardHandler(e, item, items)
+            (e) => arrowNavigationKeyboardHandler(e, item, items, directions)
         );
     }
 }
