@@ -1,0 +1,142 @@
+/* encapsulate our css to the demonstration */
+#carousel {
+    .carousel {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .carousel-zone {
+        grid-area: track;
+    }
+
+    .row-1 {
+        display: grid;
+        grid-template-columns: 1fr 7fr 1fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+            "prev track next";
+    }
+
+    .prev {
+        grid-area: prev;
+    }
+
+    .next {
+        grid-area: next;
+    }
+
+    .next,
+    .prev {
+        cursor: pointer;
+        justify-self: center;
+        align-self: center;
+        border: none;
+        background-color: #444;
+        color: white;
+        /* we ensure at least 24px size so that we
+           pass the 2.5.8 Target Size (Minimum) SC
+        */
+        width: max(24px, 2rem);
+        height: max(24px, 2rem);
+    }
+
+    @media (max-width: 500px) {
+        /* hide next/previous buttons at small viewport size */
+        /* note that the dots provide effectively the same function */
+        /* as a result losing the next/previous buttons is not a failure of 2.1.1 */
+        .next, .prev {
+            display: none;
+        }
+        .row-1 {
+            grid-template-areas:
+                "track track track";
+        }
+    }
+
+    .carousel-track {
+        display: flex;
+        justify-content: center;
+    }
+
+    .carousel-slide[aria-hidden="true"] {
+        display: none;
+    }
+
+    .carousel-dots {
+        display: flex;
+        justify-content: center;
+        gap: 6px;
+        margin-top: 10px;
+
+        .dot {
+            cursor: pointer;
+            border: 0.15rem solid #444;
+
+            &[aria-pressed="true"] {
+                background: #444;
+                box-shadow: 0px 0px 0px 2px inset white;
+            }
+        }
+    }
+
+    #play-pause {
+        svg {
+            width: 100%;
+            fill: #444;
+        }
+
+
+        &[data-alternate="pause"] .pause-icon {
+            display: none;
+        }
+
+        &[data-alternate="play"] .play-icon {
+            display: none;
+        }
+    }
+
+    /* Ensures that img is visible at high zoom */
+    img {
+        max-width: 100%;
+    }
+
+    button {
+        cursor: pointer;
+        width: max(24px, 2rem);
+        height: max(24px, 2rem);
+
+        /* prevent codeaccessible theme */
+        background: transparent;
+        padding: 0;
+
+        &.icon {
+            border-color: transparent;
+            background-color: white;
+        }
+
+        /* provide focus indicator */
+        &:focus-visible {
+            outline: 2px solid #444;
+            outline-offset: 1px;
+        }
+
+        &:hover {
+            opacity: 0.95;
+        }
+    }
+
+    .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+    }
+}
