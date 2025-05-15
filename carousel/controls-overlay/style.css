@@ -1,0 +1,59 @@
+#carousel {
+    .overlay-track {
+        position: relative;
+
+        .next,
+        .prev {
+            /* overlays controls over slide track */
+            position: absolute;
+            transform: translate(0, -50%);
+            top: 50%;
+
+            &:focus {
+                /* places focus indicator is inside the control
+                   this ensures that the focus indicator will always
+                   have a good color contrast.
+                */
+                outline-offset: -4px;
+                outline-color: white;
+            }
+        }
+
+        .next {
+            right: 0.5rem;
+        }
+
+        .prev {
+            left: 0.5rem;
+        }
+
+        .carousel-dots {
+            /* overlays controls over slide track */
+            position: absolute;
+            bottom: 0.5rem;
+            left: 50%;
+            transform: translate(-50%, 0);
+
+            padding: 0.25rem;
+
+            .dot {
+                /*  contrast well against inner background color 
+                    ensuring that the dot is perceptible when
+                    placed against a light background
+                */
+                border: 2px solid #444;
+
+                &:not([aria-pressed="true"]) {
+                    background-color: white;
+                }
+
+                &:focus {
+                    /*  places focus indicator is inside the control
+                        this ensures that the focus indicator will always
+                        have a good color contrast. */
+                    outline-offset: -5px;
+                }
+            }
+        }
+    }
+}

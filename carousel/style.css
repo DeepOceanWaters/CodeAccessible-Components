@@ -50,6 +50,7 @@
         .next, .prev {
             display: none;
         }
+
         .row-1 {
             grid-template-areas:
                 "track track track";
@@ -73,11 +74,12 @@
 
         .dot {
             cursor: pointer;
-            border: 0.15rem solid #444;
+            border: 2px solid #444;
 
-            &[aria-pressed="true"] {
+            &[aria-pressed="true"],
+            &[aria-selected="true"] {
                 background: #444;
-                box-shadow: 0px 0px 0px 2px inset white;
+                box-shadow: 0px 0px 0px 6px inset white;
             }
         }
     }

@@ -1,9 +1,11 @@
 <link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="./style.css
+">
 <script src="main.js" defer></script>
 
 <div id="carousel">
     <div class="carousel" role="region" aria-label="Image Carousel">
-        <div class="row-1">
+        <div class="overlay-track">
             <button class="carousel-control prev" aria-label="Previous Slide">&lt;</button>
             <button class="carousel-control next" aria-label="Next Slide">&gt;</button>
             <div class="carousel-zone">
@@ -12,24 +14,24 @@
                         <img decoding="async" src="https://placehold.co/600x400/444/BBB?text=Slide+One" alt="Slide 1">
                     </div>
                     <div class="carousel-slide" aria-hidden="true">
-                        <img decoding="async" src="https://placehold.co/600x400/444/BBB?text=Slide+Two" alt="Slide 2">
+                        <img decoding="async" src="https://placehold.co/600x400/BBB/444?text=Slide+Two" alt="Slide 2">
                     </div>
                     <div class="carousel-slide" aria-hidden="true">
-                        <img decoding="async" src="https://placehold.co/600x400/444/BBB?text=Slide+Three" alt="Slide 3">
+                        <img decoding="async" src="https://placehold.co/600x400/AF96FA/662341?text=Slide+Three" alt="Slide 3">
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="carousel-dots">
-            <button class="dot" aria-pressed="true">
-                <span class="visually-hidden">Slide 1</span>
-            </button>
-            <button class="dot" aria-pressed="false">
-                <span class="visually-hidden">Slide 2</span>
-            </button>
-            <button class="dot" aria-pressed="false">
-                <span class="visually-hidden">Slide 3</span>
-            </button>
+            <div class="carousel-dots">
+                <button class="dot" aria-pressed="true">
+                    <span class="visually-hidden">Slide 1</span>
+                </button>
+                <button class="dot" aria-pressed="false">
+                    <span class="visually-hidden">Slide 2</span>
+                </button>
+                <button class="dot" aria-pressed="false">
+                    <span class="visually-hidden">Slide 3</span>
+                </button>
+            </div>
         </div>
         <div role="status" class="visually-hidden">1/3</div>
     </div>

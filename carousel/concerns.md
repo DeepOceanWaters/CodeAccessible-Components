@@ -1,15 +1,9 @@
-1. Keyboard Accessibility:
-- Concern: Carousels often lack proper keyboard navigation support, making it difficult for users who rely on keyboards or other assistive devices to interact with and control the content.
-- Mitigation: Ensure comprehensive keyboard navigation support, allowing users to navigate through carousel content easily. Focus management should be implemented, ensuring that interactive elements within the carousel are accessible via keyboard.
-2. Auto-Playing Carousels:
-- Concern: Auto-Playing carousels (automatically switches slides) can be disorientating, distracting, difficult to read and operate. 
-- Mitigation: Provide users with controls to pause, play, and navigate through the carousel manually, reducing the reliance on automatic timing. Additionally, allow users to control the speed of transitions or disable automatic movement.
-4. Responsive Design Issues:
-- Concern: Carousels may not adapt well to different screen sizes, causing issues on smaller devices and reducing the overall user experience.
-- Mitigation: Implement responsive design principles to ensure that carousels adapt seamlessly to various screen sizes. Test the carousel on different devices to verify its usability and readability.
-5. Alternative Content Accessibility:
-- Concern: Providing alternative content, such as descriptive text or links, for each carousel slide may be overlooked, impacting users who cannot view the visual content.
-- Mitigation: Include descriptive text or links for each carousel slide, ensuring that users with disabilities or those who have opted not to view visual content can access relevant information.
-7. Operable Timeouts:
-- Concern: Timed interactions within carousels, such as automatic transitions, may not account for users who require more time to read or interact with the content.
-- Mitigation: Allow users to adjust the timing of carousel transitions or provide an option to pause automatic movements, ensuring that users have adequate time to interact with the content.
+1. Auto-Playing Carousels:
+- Concern: Auto-Playing carousels (automatically switches slides) can be disorientating, distracting, difficult to read and operate. WCAG requires authors provide users with a mechanism to pause, stop, or hide auto-moving/updating content. 
+- Mitigation: The best option is to not automatically play at all. The next best is to provide a control to pause/play the carousel. We also recommend using the media query prefers-reduced-motion to pause the carousel and/or reduce the animation effects when swapping slides.
+2. Responsive Design Issues:
+- Concern: Carousels may not adapt well to different viewport sizes. All content and functionality should be available to users at smaller viewport sizes. If multiple controls perform the same function (e.g. swapping slides) only one needs to be available at smaller viewport size.
+- Mitigation: Implement responsive design principles to ensure that carousels adapt to smaller viewport sizes. Test the carousel on different devices to verify its usability and readability.
+3. Color Contrast
+- Concern: Carousel controls may be located overlaying the carousel slide. Often those slides are promotional images. When the background of a control is unknown authors run the risk of a color contrast issue (the control or it's focus indicator).
+- Mitigation: Placing the controls against a background color that is known and contrast well works. Focus indicators can be placed on the inside of a control using a negative outline-offset. Focus indicators can also be two-toned similar to the default Chrome focus indicator.
